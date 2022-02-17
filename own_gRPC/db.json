@@ -1,0 +1,19 @@
+[{
+    "data": {
+        "firstname": "Marvin",
+        "lastname": "Mez"
+    },
+    "status": "online"
+}, {
+    "data": {
+        "firstname": "Kevin",
+        "lastname": "Wlasak"
+    },
+    "status": "offline"
+}, {
+    "data": {
+        "firstname": "Marvin",
+        "lastname": "Mez"
+    },
+    "status": "offline"
+}]
