@@ -58,7 +58,6 @@ def generate_messages():
     messages = [
         make_route_note("First message", 418512773, -743067823),
         make_route_note("Second message", 418512773, -743067823),
-
     ]
     for msg in messages:
         print("Sending %s at %s" % (msg.message, msg.location))

@@ -1,0 +1,71 @@
+{
+  "package": {
+    "innerDrum": {
+      "material": {
+        "elementalComposition": {
+          "26": 1.0
+        },
+        "type": "WEIGHT"
+      },
+      "density": 7.86,
+      "height": 844.0,
+      "radius": 281.5,
+      "lidThickness": 3.0,
+      "bottomThickness": 5.0,
+      "wallThickness": 1.5,
+      "offset": 65.0
+    },
+    "fillFactor": 0.93,
+    "material": {
+      "elementalComposition": {
+        "8": 0.423,
+        "1": 0.074,
+        "6": 0.503
+      },
+      "type": "WEIGHT"
+    },
+    "density": 0.7,
+    "distr": "UNIFORM",
+    "uncWasteDensity": 0.03
+  },
+  "setup": {
+    "detector": {
+      "length": 62.2,
+      "diameter": 60.4,
+      "deadLayerThickness": 0.69,
+      "distance": 8.5,
+      "boreholeLength": 36.0,
+      "boreholeDiameter": 9.5,
+      "holderInnerDiameter": 63.0,
+      "holderOuterDiameter": 64.6,
+      "endcapDiameter": 76.2,
+      "endcapThickness": 1.5,
+      "windowThickness": 1.5,
+      "material": {
+        "elementalComposition": {
+          "13": 1.0
+        },
+        "type": "WEIGHT"
+      },
+      "windowDensity": 2.7
+    },
+    "collimator": {
+      "length": 280.0,
+      "outerWidth": 240.0,
+      "outerHeight": 240.0,
+      "innerRadius": 39.0,
+      "distanceDetector": 1.0,
+      "frustrumLength": 80.0,
+      "innerFrustrumWidth": 60.0,
+      "innerFrustrumHeight": 61.0,
+      "outerFrustrumWidth": 84.361,
+      "outerFrustrumHeight": 61.0
+    },
+    "detectorDistance": 429.0,
+    "initialDetectorHeight": 135.0,
+    "segmentHeight": 130.0,
+    "tomolightMode": true,
+    "tomolightOffset": 180.0
+  },
+  "model": "ASGS_12_6"
+}

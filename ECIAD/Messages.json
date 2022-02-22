@@ -1,0 +1,352 @@
+{
+  "ErrorMessages": [
+    {
+      "Code": "310000",
+      "Task Type": "StatusRequest",
+      "ErrorCategory": "ECIADServerNotification",
+      "Message": "Status request received"
+    },
+    {
+      "Code": "310301",
+      "Task Type": "ANY",
+      "ErrorCategory": "ECIADServerNotification",
+      "Message": "Task cancelled"
+    },
+    {
+      "Code": "311001",
+      "Task Type": "StopTask",
+      "ErrorCategory": "ECIADServerNotification",
+      "Message": "Task cancel request received"
+    },
+    {
+      "Code": "311002",
+      "Task Type": "StopTask",
+      "ErrorCategory": "ECIADServerNotification",
+      "Message": "Currently no task running"
+    },
+    {
+      "Code": "311003",
+      "Task Type": "None",
+      "ErrorCategory": "ECIADServerNotification",
+      "Message": "Task completed"
+    },
+    {
+      "Code": "320101",
+      "Task Type": "ANY",
+      "ErrorCategory": "ECIADDLLError",
+      "Message": "Could not serialize request to internal API"
+    },
+    {
+      "Code": "320102",
+      "Task Type": "ANY",
+      "ErrorCategory": "ECIADDLLError",
+      "Message": "Could not serialize response from internal API"
+    },
+    {
+      "Code": "320201",
+      "Task Type": "ANY",
+      "ErrorCategory": "ECIADDLLError",
+      "Message": "Simulation error"
+    },
+    {
+      "Code": "321001",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No waste package provided"
+    },
+    {
+      "Code": "321002",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No inner drum provided"
+    },
+    {
+      "Code": "321003",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum offset is out of range  [<min>, <max>]"
+    },
+    {
+      "Code": "321004",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum bottom thickness is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321005",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum wall thickness is out of range  [<min>, <max>]"
+    },
+    {
+      "Code": "321006",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum lid thickness is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321007",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum height is out of range  [<min>, <max>]"
+    },
+    {
+      "Code": "321008",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum radius is out of range  [<min>, <max>]"
+    },
+    {
+      "Code": "321009",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Drum density is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321010",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Shielding bottom thickness is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321011",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Shielding wall thickness is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321012",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Shielding lid thickness is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321013",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No material provided for shielding"
+    },
+    {
+      "Code": "321014",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Shielding material composition error"
+    },
+    {
+      "Code": "321015",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Shielding density is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321016",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Outer drum inner radius is smaller than inner drum radius"
+    },
+    {
+      "Code": "321017",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Outer drum inner height is smaller than inner drum total height"
+    },
+    {
+      "Code": "321018",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Waste Package density is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321019",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No material provided for waste package"
+    },
+    {
+      "Code": "321020",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Waste package material composition error"
+    },
+    {
+      "Code": "321021",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Waste package fill factor is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321022",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Waste package uncertainty is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321030",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No measurement setup provided"
+    },
+    {
+      "Code": "321040",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "No detector description provided"
+    },
+    {
+      "Code": "321041",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Distance of detector endcap to center of drum is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321042",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Segment height is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321043",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Initial detector height is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321044",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Tomolight offset is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321045",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator inner radius is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321046",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator length is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321047",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator outer width is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321048",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator outer height is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321049",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator inner distance to detector is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321050",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator frustrum length is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321051",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator inner frustrum height is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321052",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator inner frustrum width is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321053",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator outer frustrum height is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321054",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator outer frustrum width is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "321055",
+      "Task Type": "EFFICIENCY_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ErrorMeasurementDescription",
+      "Message": "Collimator intersects with drum"
+    },
+    {
+      "Code": "322001",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Measurement time normal mode out of range [<min>, <max>]"
+    },
+    {
+      "Code": "322002",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Measurement time tomolight mode out of range [<min>, <max>]"
+    },
+    {
+      "Code": "322003",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "No Nuclide results provided"
+    },
+    {
+      "Code": "322004",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Data for gamma lines missing"
+    },
+    {
+      "Code": "322005",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Number of peak counts for normal mode is not 72 or 144"
+    },
+    {
+      "Code": "322006",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Number of peak counts for tomolight mode is not 72 or 144"
+    },
+    {
+      "Code": "322007",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Line energy is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "322008",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ErrorSpectrumResult",
+      "Message": "Line intensity is out of range [<min>, <max>]"
+    },
+    {
+      "Code": "323001",
+      "Task Type": "EFFICIENCY_TASK / RECONSTRUCTION_TASK / CALIBRATION_TASK",
+      "ErrorCategory": "ECIADServerError",
+      "Message": "ECIAD task still running"
+    },
+    {
+      "Code": "323002",
+      "Task Type": "ANY",
+      "ErrorCategory": "ECIADServerError",
+      "Message": "Unknown task type"
+    },
+    {
+      "Code": "324001",
+      "Task Type": "RECONSTRUCTION_TASK",
+      "ErrorCategory": "ECIADServerError",
+      "Message": "efficiencies not available - reconstruction can not be executed"
+    }
+  ]
+}

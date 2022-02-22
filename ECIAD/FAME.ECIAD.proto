@@ -1,0 +1,277 @@
+// API for ECIAD Server
+// Aachen Institute for Nuclear Training GmbH
+// Cockerillstr. 100
+// 52222 Stolberg  (Rhld.)
+// GERMANY
+
+// ECIAD Server Version V3_1
+// Date: 13.12.2022
+
+syntax = "proto3";
+
+option java_package = "de.aint.asgs";
+option java_multiple_files = true;
+option java_outer_classname = "ASGSProto";
+
+package FAME.ECIAD;
+
+// The ECIAD service definition.
+service ECIAD {
+
+    rpc EciadTask(stream EciadRequest) returns (stream EciadResponse);
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++ //
+//            ECIAD RPC Messages              //
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+message EciadRequest{
+    oneof type{
+        MeasurementDescription efficiency_task = 1;
+        SpectrumResult reconstruction_task     = 2;
+        QCCalibration calibration_task         = 3;
+        CancelationRequest stop_task           = 4;
+        StatusRequest status_task              = 5;
+    }
+}
+
+message EciadResponse{
+   oneof type{
+        CompletionStatus status              = 1;
+        Notification notification            = 2;
+        AnalysisResult reconstruction_result = 3;
+        QCResult calibration_result          = 4;
+    }
+}
+
+enum TaskType{
+    IDLE                = 0;
+    EFFICIENCY_TASK     = 1;
+    RECONSTRUCTION_TASK = 2;
+    CALIBRATION_TASK    = 3;
+}
+
+message CompletionStatus{
+    TaskType task = 1;
+    int32 percent = 2;
+}
+
+message Notification{
+    TaskType task = 1;
+    int32 code    = 2;
+}
+
+message CancelationRequest {
+}
+
+message StatusRequest{
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++ //
+//               ECIAD Input                  //
+//        Waste Package Parameters            //
+//     for Peak Efficiency Calculations       //
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+
+message MeasurementDescription {
+    WastePackage package        = 1;
+    MeasurementSetup setup      = 2;
+	
+	enum PointModel {
+	    ASGS_12_6 = 0; // 12 Messpositionen, 6 Punktringe, 109 Punkte/Layer (100%)
+	    ASGS_12_5 = 1; // 12 Messpositionen, 5 Punktringe,  85 Punkte/Layer ( 78%)
+	    ASGS_24_6 = 2; // 24 Messpositionen, 6 Punktringe, 169 Punkte/Layer (155%)
+	    ASGS_24_5 = 3; // 24 Messpositionen, 5 Punktringe, 121 Punkte/Layer (111%)
+    }
+	// Welches Punktquellen-Modell verwendet werden soll. Wenn nicht vorhanden, wird Modell 0 ASGS_12_6 (bisheriges Modell) verwendet
+	PointModel model            = 3; 
+}
+
+message MeasurementSetup {
+    DetectorDescription detector     = 1;
+    CollimatorDescription collimator = 2; // Beschreibung des Verwendetetn Kollimators
+    double detector_distance         = 3; // mm: Abstand Detektorkappe zum Nullpunkt
+    double initial_detector_height   = 4; // mm: Initiale Höhe des Detektors (Gemessen vom Mittelpunkt des Detektors)
+    double segment_height            = 5; // mm: Höhe eines zu messenenden Segments (Abstand zwischen zwei Detektorhöhen)
+    bool tomolight_mode              = 6; // reguläre Effizienzrechnung oder TOMOLight-Messung
+    double tomolight_offset          = 7; // mm: horizontaler Versatz des Detektor-Kollimatorsystem im TOMOLight-Messmodus
+}
+
+message DetectorDescription {
+    double length                = 1;  // mm: Länge des Detektorkristalls (inkl. äußere Totschicht)
+    double diameter              = 2;  // mm: Durchmesser des Detektorkristalls (inkl. äußere Totschicht)
+    double dead_layer_thickness  = 3;  // mm: Stärke der äußeren Totschicht
+    double distance              = 4;  // mm: Abstand Detektorkristall zu Detektor-Eintrittfenster
+    double borehole_length       = 5;  // mm: Länge des inneren Bohrlochs inkl. der inneren Tontschicht
+    double borehole_diameter     = 6;  // mm: Durchmesser des inneren Bohrlochs inkl. der inneren Tontschicht
+    double holder_inner_diameter = 7;  // mm: Innendurchmesser der Detektorhalterung
+    double holder_outer_diameter = 8;  // mm: Außendurchmesser der Detektorhalterung
+    double endcap_diameter       = 9;  // mm: Außen-Durchmesser der Detektorkappe
+    double endcap_thickness      = 10; // mm: Wandstärke der Detektorendkappe
+    double window_thickness      = 11; // mm: Wandstärke des Eintrittfensters
+    Material material            = 12; // Material-ID des Eintrittfensters
+    double window_density        = 13; // Dichte des Materials [g/cm^3]
+}
+
+message CollimatorDescription {
+    double length                = 1;  // mm: Länge über Alles
+    double outer_width           = 2;  // mm: Gesamtbreite Kollimator
+    double outer_height          = 3;  // mm: Gesamthöhe Kollimator
+    double inner_radius          = 4;  // mm: innenradius
+    double distance_detector     = 5;  // mm: Abstand Sichtfenster zu Detektorendkappe
+    double frustrum_length       = 6;  // mm: Länge des Sichtfensters
+    double inner_frustrum_width  = 7;  // mm: Breite des inneren Sichtfensters
+    double inner_frustrum_height = 8;  // mm: Höhe des inneren Sichtfensters
+    double outer_frustrum_width  = 9;  // mm: Breite des äußeren Sichtfensters
+    double outer_frustrum_height = 10;  // mm: Höhe des äußeren Sichtfensters
+}
+
+message WastePackage {
+
+    enum UncertaintyDistr {
+        NORMAL  = 0; // Normal- (Gauss-) Verteilung der Unsicherheit
+        UNIFORM = 1; // Gleichverteilte Unsicherheit
+    };
+
+    Drum inner_drum            = 1; // Beschrebung des Innenfasses. MUSS immer vorhanden sein
+    Drum outer_drum            = 2; // Beschreibung des äußeren "Überfasses"; Optional
+    double fill_factor         = 3; // Füllhöhe in [0,1] des möglichen Innenraums des inneren Fasses (Fashöhe -Offset, Boden- & Deckelstärke, sowie evtl. Abschirmung)
+    Material material          = 4;
+    double density             = 5;
+    UncertaintyDistr distr     = 6;
+    double unc_waste_density   = 7; // relative Unsicherheit der Matrixdichte : Bei Normalverteilung SIGMA; bei Gleichverteilung +- xxx %
+}
+
+message Drum {
+    Material material       = 1;
+    double density          = 2; // g/cm^3
+    double height           = 3; // mm: Außenhöhe
+    double radius           = 4; // mm: Außenradius
+    double lid_thickness    = 5; // mm: Deckelstärke
+    double bottom_thickness = 6; // mm: Bodenstärke
+    double wall_thickness   = 7; // mm: Wandstärke
+    double offset           = 8; // mm: Abstand Fassboden zu Grund (z.B. Durch Falz am unteren Ende des Fasses)
+    Shielding shielding     = 9; // ist eine Abschirmung im Fass integriert
+}
+
+message Shielding {
+    // Außenmaße der Abschirmung werden durch das umgebende Fass definiert
+    Material material       = 1;
+    double density          = 2; // g/cm^3
+    double lid_thickness    = 3; // mm: Stärke der Abschirmung oben
+    double bottom_thickness = 4; // mm: Stärke der Abschirmung unten
+    double wall_thickness   = 5; // mm: Stärke der Abschirmung radial
+}
+
+message Material {
+    enum CompositionType{
+        WEIGHT = 0;  // Elementzusammensetzung des materials in Massen-%
+        ATOM   = 1;  // Elementzusammensetzung des materials in Atom-% (Teilchen-%)
+    }
+
+    map<int32, double> elemental_composition = 1;
+    CompositionType type                     = 2;
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++ //
+//               ECIAD Input                  //
+//     Gamma Spectrum Analysis Results        //
+//     for reconstruction of activities       //
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+message SpectrumResult {
+    repeated NuclideData nuclide_results   = 1;
+    bool                 tomolight_reco    = 2;   // Wenn TRUE - Rekonstruktion mit Tomo-light Spektrumsergebnsisse
+    repeated double      measurement_times = 3;   // Messzeit (Livetime) in Sekunden (72x)
+    repeated double      tomolight_times   = 4;   // Messzeit (Livetime) in Sekunden (72x) für Tomolight-Modus
+    double               unc_efficiency    = 5;   // relative Unsicherheit der Photopeakeffizienz; Normalverteilung SIGMA
+    bool                 skip_detection_limits = 6; // Wenn true -> Berechne nur bester Schätzwert und Erkennungsgrenzen
+}
+
+message NuclideData {
+    string   id             = 1;    // name des nuklids Cs-137, Co-60, oder beliebieger jedoch eindeutiger name.
+    repeated LineData lines = 2;    // Gammalinien, für die eine Auswertung durchgeführt werden soll.
+}
+
+message LineData {
+    double   energy                     = 1; // energie der Gammalinie [keV]
+    double   intensity                  = 2; // Emissionswahrscheinlichkeit der Gammalinie (0,85.. für 662 keV Cs-137 z.B.)
+    double   unc_intensity              = 3; // Unsicherheit auf der Emisssionswahrscheinlichkeit
+    repeated Counts peak_counts         = 4; // Peakflächen, Unsicherheiten und Untergrund der regulären Messungen (72x)
+    repeated Counts tomolight_counts    = 5; // Peakflächen, Unsicherheiten und Untergrund im tomolight Messmodus (72x)
+}
+
+message Counts {
+    double netto_peak_area               = 1; // Netto-Peakfläche
+    double unc_netto_peak_area           = 2; // Unsicherheit Netto-Peakfläche
+    double unc_zero_effect               = 3; // Unsicherheit Netto-Peakfläche ohne physikalischen Effekt
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++ //
+//               ECIAD Output                 //
+//         Reconstructed Activities           //
+//  & Characteristic Limits (DIN ISO 11929)   //
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+
+message AnalysisResult {
+    repeated NuclideResult   results     = 1; // Für das Gesamtergebnis pro Nuklid ein Ergebnis Object
+}
+
+message NuclideResult {
+    string nuclide_id                    = 1; // Name des Radionuklids
+
+    double activity                     = 2; // primäres Messergebnis
+    double unc_activity                 = 3; // Unsicherheit auf den obigen  Wert.
+
+    double decision_threshold           = 4; // Bester Wert für die Erkennungsgrenze
+    double detection_limit              = 5; // Bester Wert für die Nachweisgrenze
+
+    double best_estimate                = 6; // Bester (Schätz-)Wert für die Aktivität des Nuklids [Bq]
+    double unc_best_estimate            = 7; // Standardunsicherheit des besten Schätzwerts
+    double ll_coverage_interval         = 8; // Untere Grenze Konfidenzintervall der Aktivität
+    double ul_coverage_interval         = 9; // Obere Grenze Konfidenzintervall der Aktivität
+
+    repeated PointAcitivies point_activities = 10; // Ergebnisse pro Partition/Punkt
+}
+
+message PointAcitivies {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+    double activity = 4;
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++ //
+//            ECIAD Calibration QC           //
+//          Calibration Source Check         //
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+message QCCalibration {
+    MeasurementDescription setup         = 1;
+    repeated Coordinate source_positions = 2;
+    repeated double energies             = 3; // keV!
+}
+
+message Coordinate {
+    // Koordinaten für QC Kalibrierquellen-Check
+    double x = 1; // mm: Abstand Quelle auf Detektorachse
+    double y = 2; // mm: Offset der Quelle von der Detektorachse (Seitlicher Versatz)
+    double z = 3; // mm: Höhe der Punktquelle relativ zum Mittelpunkt des Detektors (Vertikaler Versatz)
+}
+
+message QCResult {
+    repeated ResultPair results = 1;
+}
+
+message ResultPair{
+    Coordinate position = 1;
+    repeated Efficiency efficiencies = 2;
+}
+
+message Efficiency {
+    double energy      = 1; // keV
+    double efficiency  = 2; // Effizienz für diese Energie
+    double uncertainty = 3; // Absoluter Fehler auf die Effizienz. Rel. Fehler = Abs. Fehler / Effizienz
+}
