@@ -63,13 +63,15 @@ async def get_EciadTask(stub):
     for idx in enumerate(jsonTaskFiles):
         responses = stub.EciadTask(sendTask(idx))
         Eciadisrunning = True
-        while Eciadisrunning:
-            for response in responses:
+        for response in responses:
+            while Eciadisrunning:
                 if response.notification.code:
                     errorCategory = JsonReader.filterMessageCode(response.notification.code)["ErrorCategory"]
                     if errorCategory == "ErrorMeasurementDescription" or errorCategory == "ECIADDLLError" or errorCategory == "ErrorSpectrumResult":
-                        print("die: " + str(idx) + "wurde abgebrochen")
+                        print("die: " + str(idx) + "wurde abgebrochen1")
                         Eciadisrunning = False
+                    else:
+                        responses = stub.EciadTask(sendStatusRequests())
                 else:
                     print("die: " + str(idx) + "wurde abgebrochen")
                     Eciadisrunning = False
